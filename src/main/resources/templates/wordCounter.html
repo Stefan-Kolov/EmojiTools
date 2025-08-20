@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Counter</title>
+    <style>
+        body {
+            background-color: #f9ecd7;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 90vh;
+            margin: 0;
+            padding-top: 2%;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 60%;
+            max-width: 600px;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        .counter {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+        .counter span {
+            font-weight: bold;
+            color: #d35400;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #d47f41;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+        }
+        textarea::placeholder {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            position: relative;
+            width: 100%;
+            margin-bottom: 3%;
+        }
+        .header input {
+            padding: 10px;
+            width: 300px;
+            border: 2px solid #d47f41;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        .dropbtn {
+            background-color: #553566;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            margin-right: 30px;
+        }
+        .arrow {
+            font-size: 18px;
+            margin-left: 10px;
+        }
+        .dropdown {
+            position: absolute;
+            right: 20px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="dropdown">
+        <button class="dropbtn">Select Tool <span class="arrow">&#9662;</span></button>
+        <div class="dropdown-content">
+            <a href="/home">Home</a>
+            <a href="/symbols">Symbols</a>
+            <a href="/textGenerator">Text Generator</a>
+            <a href="/wordCounter">Word Counter</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h1>Word Counter</h1>
+    <div class="counter">
+        <h2>Words: <span id="wordsCount">0</span></h2>
+        <h2>Characters: <span id="charsCount">0</span></h2>
+    </div>
+    <textarea id="textArea" placeholder="Type your text here..." oninput="updateCount()"></textarea>
+</div>
+
+<script>
+    function updateCount() {
+        let text = document.getElementById("textArea").value;
+        document.getElementById("charsCount").innerText = text.length;
+
+        let words = text.trim().split(/\s+/);
+        document.getElementById("wordsCount").innerText = words[0] === "" ? 0 : words.length;
+    }
+</script>
+</body>
+</html>

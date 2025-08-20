@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      body{
+        background-color: #f9ecd7
+      }
+      .blog-card{
+          background-color: white;
+      }
+    </style>
+</head>
+<body>
+<form method="post" action="/blogs/add">
+    <input type="text" name="title" placeholder="Title">
+    <textarea name="description" placeholder="Content"></textarea>
+    <button type="submit">Done</button>
+</form>
+
+<div class="blogs">
+    <div th:each="blog : ${blogsList}" class="blog-card">
+        <h2 th:text="${blog.getTitle()}">Blog Title</h2>
+        <p th:text="${blog.getDescription()}">Blog Description</p>
+        <a href="/blogs/edit">Edit</a>
+        <a href="/blogs/delete">Delete</a>
+    </div>
+</div>
+
+</body>
+</html>

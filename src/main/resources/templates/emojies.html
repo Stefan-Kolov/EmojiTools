@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+
+      justify-content: space-between;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #f9ecd7;
+    }
+    .middle{
+      display: flex;
+    }
+
+    #categoryForm {
+      flex: 1;
+      display: block;
+    }
+
+    #categoryForm label {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .emoji-table {
+      flex: 3;
+      max-width: 80%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    td {
+      font-size: 30px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    td:hover {
+      transform: scale(1.2);
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      position: relative;
+      width: 100%;
+      margin-bottom: 3%;
+    }
+    .header input {
+      padding: 10px;
+      width: 300px;
+      border: 2px solid #d47f41;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+    .search {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .dropbtn {
+      background-color: #553566;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+    }
+    .arrow {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+    .dropdown {
+      position: absolute;
+      right: 20px;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="search">
+    <input type="text" placeholder="Search your emoji..." style="text-align: center">
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Select Tool <span class="arrow">&#9662;</span></button>
+    <div class="dropdown-content">
+      <a href="/home">Home</a>
+      <a href="/symbols">Symbols</a>
+      <a href="/textGenerator">Text Generator</a>
+      <a href="/wordCounter">Word Counter</a>
+    </div>
+  </div>
+</div>
+
+<div class="middle">
+  <div id="categoryForm">
+    <label>Select category</label>
+    <form>
+      <label>
+        <input type="radio" name="category" value="all" th:checked="${selectedCategory == 'all'}" checked> All
+      </label>
+      <label>
+        <input type="radio" name="category" value="smilesAndPeople" th:checked="${selectedCategory == 'smilesAndPeople'}"> Smileys & People
+      </label>
+      <label>
+        <input type="radio" name="category" value="animalsAndNature" th:checked="${selectedCategory == 'animalsAndNature'}"> Animals & Nature
+      </label>
+      <label>
+        <input type="radio" name="category" value="foodAndDrink" th:checked="${selectedCategory == 'foodAndDrink'}"> Food & Drink
+      </label>
+      <label>
+        <input type="radio" name="category" value="travelAndPlaces" th:checked="${selectedCategory == 'travelAndPlaces'}"> Travel & Places
+      </label>
+      <label>
+        <input type="radio" name="category" value="activities" th:checked="${selectedCategory == 'activities'}"> Activities
+      </label>
+      <label>
+        <input type="radio" name="category" value="objects" th:checked="${selectedCategory == 'objects'}"> Objects
+      </label>
+      <label>
+        <input type="radio" name="category" value="symbols" th:checked="${selectedCategory == 'symbols'}"> Symbols
+      </label>
+      <label>
+        <input type="radio" name="category" value="flags" th:checked="${selectedCategory == 'flags'}"> Flags
+      </label>
+    </form>
+  </div>
+
+  <div class="emoji-table">
+    <table>
+      <tbody>
+      <tr th:each="emojiList : ${emojies}">
+        <td th:text="${emojiList[0]}" th:if="${emojiList.size() > 0}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[1]}" th:if="${emojiList.size() > 1}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[2]}" th:if="${emojiList.size() > 2}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[3]}" th:if="${emojiList.size() > 3}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[4]}" th:if="${emojiList.size() > 4}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[5]}" th:if="${emojiList.size() > 5}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[6]}" th:if="${emojiList.size() > 6}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[7]}" th:if="${emojiList.size() > 7}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[8]}" th:if="${emojiList.size() > 8}" onclick="copyToClipboard(this)" class="emoji"></td>
+        <td th:text="${emojiList[9]}" th:if="${emojiList.size() > 9}" onclick="copyToClipboard(this)" class="emoji"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('input[name="category"]').forEach(radio => {
+    radio.addEventListener("change", function() {
+      let selectedCategory = document.querySelector('input[name="category"]:checked').value;
+      window.location.href = "/emojies?category=" + selectedCategory;
+    });
+  });
+
+  function copyToClipboard(element) {
+    const emoji = element.innerText || element.textContent;
+    navigator.clipboard.writeText(emoji).then(() => {
+      alert("Copied: " + emoji);
+    }).catch(err => {
+      console.error("Failed to copy: ", err);
+    });
+  }
+</script>
+
+</body>
+</html>
