@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&family=Courier+Prime&family=Lobster&family=Montserrat:wght@400;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Oswald:wght@400;700&family=Inconsolata:wght@400;700&family=Fjalla+One&family=Merriweather:wght@400;700&family=Indie+Flower&family=Anton&family=Shadows+Into+Light&display=swap">
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
+            margin-top: 50px;
+            margin-left: 50px;
+            margin-right: 50px;
             background-color: #f9ecd7;
         }
         input {
@@ -101,6 +105,51 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        /* Input */
+        #textInput {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 18px;
+            border: 2px solid #d47f41;
+            border-radius: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        #textInput:focus {
+            border-color: #553566;
+            box-shadow: 0 0 0 3px rgba(85,53,102,0.1);
+        }
+
+        /* Output cards */
+        .output-card {
+            width: 100%;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: left;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .output-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+        .font-label {
+            font-weight: 700;
+            color: #d47f41;
+            display: block;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
@@ -115,24 +164,68 @@
         </div>
     </div>
 </div>
-<h1>Text Generator</h1>
-<input type="text" id="textInput" placeholder="Type your text here..." oninput="updateText()">
-<div class="output">
-    <p><span class="font-label">Roboto:</span> <span class="font1" id="output1"></span></p>
-    <p><span class="font-label">Pacifico:</span> <span class="font2" id="output2"></span></p>
-    <p><span class="font-label">Courier Prime:</span> <span class="font3" id="output3"></span></p>
-    <p><span class="font-label">Lobster:</span> <span class="font4" id="output4"></span></p>
-    <p><span class="font-label">Montserrat:</span> <span class="font5" id="output5"></span></p>
-    <p><span class="font-label">Dancing Script:</span> <span class="font6" id="output6"></span></p>
-    <p><span class="font-label">Playfair Display:</span> <span class="font7" id="output7"></span></p>
-    <p><span class="font-label">Raleway:</span> <span class="font8" id="output8"></span></p>
-    <p><span class="font-label">Oswald:</span> <span class="font9" id="output9"></span></p>
-    <p><span class="font-label">Inconsolata:</span> <span class="font10" id="output10"></span></p>
-    <p><span class="font-label">Fjalla One:</span> <span class="font11" id="output11"></span></p>
-    <p><span class="font-label">Merriweather:</span> <span class="font12" id="output12"></span></p>
-    <p><span class="font-label">Indie Flower:</span> <span class="font13" id="output13"></span></p>
-    <p><span class="font-label">Anton:</span> <span class="font14" id="output14"></span></p>
-    <p><span class="font-label">Shadows Into Light:</span> <span class="font15" id="output15"></span></p>
+<div class="container">
+    <div class="row text-center">
+        <h1>Text Generator</h1>
+        <input type="text" id="textInput" placeholder="Type your text here..." oninput="updateText()">
+
+        <div class="output">
+            <div class="output-card"><span class="font-label">Roboto</span><span class="font1" id="output1"></span></div>
+            <div class="output-card"><span class="font-label">Pacifico</span><span class="font2" id="output2"></span></div>
+            <div class="output-card"><span class="font-label">Courier Prime</span><span class="font3" id="output3"></span></div>
+            <div class="output-card"><span class="font-label">Lobster</span><span class="font4" id="output4"></span></div>
+            <div class="output-card"><span class="font-label">Montserrat</span><span class="font5" id="output5"></span></div>
+            <div class="output-card"><span class="font-label">Dancing Script</span><span class="font6" id="output6"></span></div>
+            <div class="output-card"><span class="font-label">Playfair Display</span><span class="font7" id="output7"></span></div>
+            <div class="output-card"><span class="font-label">Raleway</span><span class="font8" id="output8"></span></div>
+            <div class="output-card"><span class="font-label">Oswald</span><span class="font9" id="output9"></span></div>
+            <div class="output-card"><span class="font-label">Inconsolata</span><span class="font10" id="output10"></span></div>
+            <div class="output-card"><span class="font-label">Fjalla One</span><span class="font11" id="output11"></span></div>
+            <div class="output-card"><span class="font-label">Merriweather</span><span class="font12" id="output12"></span></div>
+            <div class="output-card"><span class="font-label">Indie Flower</span><span class="font13" id="output13"></span></div>
+            <div class="output-card"><span class="font-label">Anton</span><span class="font14" id="output14"></span></div>
+            <div class="output-card"><span class="font-label">Shadows Into Light</span><span class="font15" id="output15"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="background-color: #553566">
+    <div class="col-5 d-flex flex-column justify-content-center">
+        <h1 class="text-white align-self-end">Here we go!</h1>
+        <p class="text-white align-self-end">Enhance your messages, social media posts, and creative projects effortlessly.</p>
+    </div>
+    <div class="col-7">
+        <div class="row g-3 mt-2 mb-3 justify-content-center">
+            <div class="col-5">
+                <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
+                    <h3 class="fw-bold">Emojis</h3>
+                    <p class="text-center">Copy and paste emojis or create fun emoji combinations.</p>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
+                    <h3 class="fw-bold">Symbols</h3>
+                    <p class="text-center">Explore a vast collection of symbols and special characters.</p>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
+                    <h3 class="fw-bold">Text Generator</h3>
+                    <p class="text-center">Convert your plain text into bold, italic, or decorative fonts.</p>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
+                    <h3 class="fw-bold">Word Counter</h3>
+                    <p class="text-center">Easily count words, characters, and spaces.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="padding: 20px; font-size: 14px; text-align: center">
+    COPYRIGHT © 2010-2025 EMOJITEXTTOOLS.COM ALL RIGHTS RESERVED.
 </div>
 
 <script>
