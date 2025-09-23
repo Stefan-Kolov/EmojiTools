@@ -5,6 +5,7 @@
   <title>Emoji Picker</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,63 +15,7 @@
       margin-right: 50px;
       margin-left: 50px;
     }
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 20px;
-      position: relative;
-      width: 100%;
-    }
-    .header input {
-      padding: 10px;
-      width: 300px;
-      border: 2px solid #d47f41;
-      border-radius: 20px;
-      font-size: 16px;
-      text-align: center;
-    }
-    .dropdown {
-      position: absolute;
-      right: 0;
-    }
-    .dropbtn {
-      background-color: #553566;
-      color: white;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-    }
-    .arrow {
-      font-size: 18px;
-      margin-left: 10px;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-      border-radius: 5px;
-      margin-top: 5px;
-    }
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-    .dropdown-content a:hover {
-      background-color: #f1f1f1;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+
     .categories {
       display: flex;
       flex-wrap: wrap;
@@ -78,6 +23,7 @@
       margin-bottom: 20px;
       justify-content: center;
     }
+
     .category-btn {
       padding: 10px 20px;
       background: white;
@@ -87,34 +33,44 @@
       transition: all 0.3s ease;
       font-size: 0.9rem;
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
+
     .category-btn:hover {
       background: #667eea;
       color: white;
       border-color: #667eea;
     }
+
     .category-btn.active {
       background: #667eea;
       color: white;
       border-color: #667eea;
     }
+
     .emoji-table {
       overflow-x: auto;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
     }
+
     th, td {
       padding: 15px;
       text-align: center;
       border: 1px solid #ddd;
     }
+
     td {
       font-size: 30px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
+
     td:hover {
       transform: scale(1.2);
       background-color: #f0f0f0;
@@ -135,93 +91,180 @@
       padding: 20px;
       font-size: 14px;
     }
+
+    .emoji-table {
+      overflow-x: unset;
+    }
+
+    @media (max-width: 768px) {
+      .categories {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 5px;
+      }
+
+      .category-btn {
+        flex: 0 0 auto;
+        font-size: 0.9rem;
+        padding: 5px 8px;
+        border-radius: 15px;
+        min-width: 40px;
+        text-align: center;
+      }
+
+      .category-btn .label {
+        display: none;
+      }
+
+      .category-btn:first-child {
+        min-width: auto;
+        padding: 5px 15px;
+      }
+
+      .category-btn:first-child .label {
+        display: inline;
+        font-size: 0.8rem;
+      }
+
+      .emoji-table table {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 5px;
+        border-collapse: collapse;
+      }
+
+      .emoji-table tr,
+      .emoji-table tbody {
+        display: contents;
+      }
+
+      .emoji-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .emoji-table td:hover {
+        transform: scale(1.2);
+        background-color: #f0f0f0;
+      }
+    }
   </style>
 </head>
 <body>
-
-<div class="header">
-  <input type="text" placeholder="Search your emoji...">
-  <div class="dropdown">
-    <button class="dropbtn">Select Tool <span class="arrow">&#9662;</span></button>
-    <div class="dropdown-content">
-      <a href="/home">Home</a>
-      <a href="/symbols">Symbols</a>
-      <a href="/textGenerator">Text Generator</a>
-      <a href="/wordCounter">Word Counter</a>
-    </div>
-  </div>
-</div>
-
-<div class="categories" id="categories">
-  <button class="category-btn active" data-category="all">All</button>
-  <button class="category-btn" data-category="smilesAndPeople">😀 Smileys & People</button>
-  <button class="category-btn" data-category="animalsAndNature">🐶 Animals & Nature</button>
-  <button class="category-btn" data-category="foodAndDrink">🍕 Food & Drink</button>
-  <button class="category-btn" data-category="travelAndPlaces">✈️ Travel & Places</button>
-  <button class="category-btn" data-category="activities">⚽ Activities</button>
-  <button class="category-btn" data-category="objects">💡 Objects</button>
-  <button class="category-btn" data-category="symbols">❤️ Symbols</button>
-  <button class="category-btn" data-category="flags">🏳️ Flags</button>
-</div>
-
-<div class="emoji-table">
-  <table>
-    <tbody>
-    <tr th:each="emojiList : ${emojies}">
-      <td th:text="${emojiList[0]}" th:if="${emojiList.size() > 0}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[1]}" th:if="${emojiList.size() > 1}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[2]}" th:if="${emojiList.size() > 2}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[3]}" th:if="${emojiList.size() > 3}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[4]}" th:if="${emojiList.size() > 4}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[5]}" th:if="${emojiList.size() > 5}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[6]}" th:if="${emojiList.size() > 6}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[7]}" th:if="${emojiList.size() > 7}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[8]}" th:if="${emojiList.size() > 8}" onclick="copyToClipboard(this)"></td>
-      <td th:text="${emojiList[9]}" th:if="${emojiList.size() > 9}" onclick="copyToClipboard(this)"></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="row mt-5" style="background-color: #553566">
-  <div class="col-5 d-flex flex-column justify-content-center">
-    <h1 class="text-white align-self-end">Here we go!</h1>
-    <p class="text-white align-self-end">Enhance your messages, social media posts, and creative projects effortlessly.</p>
-  </div>
-  <div class="col-7">
-    <div class="row g-3 mt-2 mb-3 justify-content-center">
-      <div class="col-5">
-        <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
-          <h3 class="fw-bold">Emojis</h3>
-          <p class="text-center">Copy and paste emojis or create fun emoji combinations.</p>
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
-          <h3 class="fw-bold">Symbols</h3>
-          <p class="text-center">Explore a vast collection of symbols and special characters.</p>
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
-          <h3 class="fw-bold">Text Generator</h3>
-          <p class="text-center">Convert your plain text into bold, italic, or decorative fonts.</p>
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
-          <h3 class="fw-bold">Word Counter</h3>
-          <p class="text-center">Easily count words, characters, and spaces.</p>
+  <div class="container-fluid">
+    <div class="row mb-5">
+      <div class="d-flex justify-content-end align-items-center">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-bs-toggle="dropdown" aria-expanded="false" style="background: #553566">
+            Select Tool
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-bs-display="static">
+            <li><a class="dropdown-item" href="/home">Home</a></li>
+            <li><a class="dropdown-item" href="/symbols">Symbols</a></li>
+            <li><a class="dropdown-item" href="/textGenerator">Text Generator</a></li>
+            <li><a class="dropdown-item" href="/wordCounter">Word Counter</a></li>
+          </ul>
         </div>
       </div>
     </div>
-  </div>
+
+    <div class="categories" id="categories">
+      <button class="category-btn active" data-category="all">
+        All
+      </button>
+      <button class="category-btn" data-category="smilesAndPeople">
+        <span class="emoji">😀</span> <span class="label">Smileys & People</span>
+      </button>
+      <button class="category-btn" data-category="animalsAndNature">
+        <span class="emoji">🐶</span> <span class="label">Animals & Nature</span>
+      </button>
+      <button class="category-btn" data-category="foodAndDrink">
+        <span class="emoji">🍕</span> <span class="label">Food & Drink</span>
+      </button>
+      <button class="category-btn" data-category="travelAndPlaces">
+        <span class="emoji">✈️</span> <span class="label">Travel & Places</span>
+      </button>
+      <button class="category-btn" data-category="activities">
+        <span class="emoji">⚽</span> <span class="label">Activities</span>
+      </button>
+      <button class="category-btn" data-category="objects">
+        <span class="emoji">💡</span> <span class="label">Objects</span>
+      </button>
+      <button class="category-btn" data-category="symbols">
+        <span class="emoji">❤️</span> <span class="label">Symbols</span>
+      </button>
+      <button class="category-btn" data-category="flags">
+        <span class="emoji">🏳️</span> <span class="label">Flags</span>
+      </button>
+    </div>
+
+
+    <div class="emoji-table mb-4">
+      <table>
+        <tbody>
+        <tr th:each="emojiList : ${emojies}">
+          <td th:text="${emojiList[0]}" th:if="${emojiList.size() > 0}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[1]}" th:if="${emojiList.size() > 1}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[2]}" th:if="${emojiList.size() > 2}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[3]}" th:if="${emojiList.size() > 3}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[4]}" th:if="${emojiList.size() > 4}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[5]}" th:if="${emojiList.size() > 5}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[6]}" th:if="${emojiList.size() > 6}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[7]}" th:if="${emojiList.size() > 7}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[8]}" th:if="${emojiList.size() > 8}" onclick="copyToClipboard(this)"></td>
+          <td th:text="${emojiList[9]}" th:if="${emojiList.size() > 9}" onclick="copyToClipboard(this)"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row" style="background-color: #553566;">
+      <div class="col-12 col-md-5 d-flex flex-column justify-content-center p-3">
+        <h1 class="align-self-md-end">Here we go!</h1>
+        <p class="align-self-md-end"> Enhance your messages, social media posts, and creative projects effortlessly. </p>
+      </div>
+      <div class="col-12 col-md-7">
+        <div class="row g-3 mt-2 mb-3 justify-content-center">
+          <div class="col-6 col-md-5">
+            <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
+              <h3 class="fw-bold text-center">Emojis</h3>
+              <p class="text-center">Copy and paste emojis or create fun emoji combinations.</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-5">
+            <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
+              <h3 class="fw-bold text-center">Symbols</h3>
+              <p class="text-center">Explore a vast collection of symbols and special characters.</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-5">
+            <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
+              <h3 class="fw-bold text-center">Text Generator</h3>
+              <p class="text-center">Convert your plain text into bold, italic, or decorative fonts.</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-5">
+            <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
+              <h3 class="fw-bold text-center">Word Counter</h3>
+              <p class="text-center">Easily count words, characters, and spaces.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
 
 
 <div class="footer">
   COPYRIGHT © 2010-2025 EMOJITEXTTOOLS.COM ALL RIGHTS RESERVED.
 </div>
+</div>
+
 
 <script>
   const categoryButtons = document.querySelectorAll('.category-btn');
