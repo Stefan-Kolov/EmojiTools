@@ -1,269 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Emoji Picker</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9ecd7;
-      box-sizing: border-box;
-      margin-top: 50px;
-      margin-right: 50px;
-      margin-left: 50px;
-    }
+    <meta charset="UTF-8">
+    <title>Emoji Picker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f9ecd7;
+          box-sizing: border-box;
+          margin-top: 50px;
+          margin-right: 50px;
+          margin-left: 50px;
+        }
 
-    .categories {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-      justify-content: center;
-    }
+        .categories {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 20px;
+          justify-content: center;
+        }
 
-    .category-btn {
-      padding: 10px 20px;
-      background: white;
-      border: 2px solid #e9ecef;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+        .category-btn {
+          padding: 10px 20px;
+          background: white;
+          border: 2px solid #e9ecef;
+          border-radius: 25px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 0.9rem;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
 
-    .category-btn:hover {
-      background: #667eea;
-      color: white;
-      border-color: #667eea;
-    }
+        .category-btn:hover {
+          background: #667eea;
+          color: white;
+          border-color: #667eea;
+        }
 
-    .category-btn.active {
-      background: #667eea;
-      color: white;
-      border-color: #667eea;
-    }
+        .category-btn.active {
+          background: #667eea;
+          color: white;
+          border-color: #667eea;
+        }
 
-    .emoji-table {
-      overflow-x: auto;
-    }
+        .emoji-table {
+          overflow-x: auto;
+        }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
 
-    th, td {
-      padding: 15px;
-      text-align: center;
-      border: 1px solid #ddd;
-    }
+        th, td {
+          padding: 15px;
+          text-align: center;
+          border: 1px solid #ddd;
+        }
 
-    td {
-      font-size: 30px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+        td {
+          font-size: 30px;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        }
 
-    td:hover {
-      transform: scale(1.2);
-      background-color: #f0f0f0;
-    }
-    
-    .info-box h3 {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
+        td:hover {
+          transform: scale(1.2);
+          background-color: #f0f0f0;
+        }
 
-    .info-box p {
-      font-size: 1em;
-      color: #555;
-    }
+        .info-box h3 {
+          font-size: 1.2em;
+          margin-bottom: 10px;
+        }
 
-    .footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
+        .info-box p {
+          font-size: 1em;
+          color: #555;
+        }
 
-    .emoji-table {
-      overflow-x: unset;
-    }
+        .footer {
+          text-align: center;
+          padding: 20px;
+          font-size: 14px;
+        }
 
-    @media (max-width: 768px) {
-      .categories {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 5px;
-      }
+        .emoji-table {
+          overflow-x: unset;
+        }
 
-      .category-btn {
-        flex: 0 0 auto;
-        font-size: 0.9rem;
-        padding: 5px 8px;
-        border-radius: 15px;
-        min-width: 40px;
-        text-align: center;
-      }
+        .modern-section {
+          background: linear-gradient(135deg, #553566, #6a4390, #d47f41);
+          position: relative;
+          overflow: hidden;
+        }
 
-      .category-btn .label {
-        display: none;
-      }
+        .modern-section::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent 70%);
+          animation: rotateGlow 10s linear infinite;
+          z-index: 0;
+        }
 
-      .category-btn:first-child {
-        min-width: auto;
-        padding: 5px 15px;
-      }
+        @keyframes rotateGlow {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
 
-      .category-btn:first-child .label {
-        display: inline;
-        font-size: 0.8rem;
-      }
+        .modern-section .highlight {
+          color: #ffd97d;
+          font-weight: 600;
+        }
 
-      .emoji-table table {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-        gap: 5px;
-        border-collapse: collapse;
-      }
+        .feature-card {
+          background: #fff;
+          color: #333;
+          transition: all 0.3s ease;
+        }
 
-      .emoji-table tr,
-      .emoji-table tbody {
-        display: contents;
-      }
+        .feature-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
 
-      .emoji-table td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-      }
+        .feature-icon {
+          font-size: 2rem;
+          color: #d47f41;
+        }
 
-      .emoji-table td:hover {
-        transform: scale(1.2);
-        background-color: #f0f0f0;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+          .categories {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            justify-content: flex-start;
+            gap: 5px;
+          }
+
+          .category-btn {
+            flex: 0 0 auto;
+            font-size: 0.9rem;
+            padding: 5px 8px;
+            border-radius: 15px;
+            min-width: 40px;
+            text-align: center;
+          }
+
+          .category-btn .label {
+            display: none;
+          }
+
+          .category-btn:first-child {
+            min-width: auto;
+            padding: 5px 15px;
+          }
+
+          .category-btn:first-child .label {
+            display: inline;
+            font-size: 0.8rem;
+          }
+
+          .emoji-table table {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 5px;
+            border-collapse: collapse;
+          }
+
+          .emoji-table tr,
+          .emoji-table tbody {
+            display: contents;
+          }
+
+          .emoji-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+          }
+
+          .emoji-table td:hover {
+            transform: scale(1.2);
+            background-color: #f0f0f0;
+          }
+
+          .modern-section {
+            border-radius: 0;
+            padding: 2rem 1rem;
+          }
+
+          .feature-card {
+            padding: 1.2rem;
+          }
+
+          .feature-icon {
+            font-size: 1.8rem;
+          }
+
+          .modern-section h2 {
+            font-size: 1.8rem;
+          }
+
+          .modern-section p {
+            font-size: 1rem;
+          }
+        }
+    </style>
 </head>
 <body>
-  <div class="container-fluid">
-    <div class="row mb-5">
-      <div class="d-flex justify-content-end align-items-center">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-bs-toggle="dropdown" aria-expanded="false" style="background: #553566">
-            Select Tool
+    <div class="container-fluid">
+      <div class="row mb-5">
+          <div class="d-flex justify-content-end align-items-center">
+              <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                          data-bs-toggle="dropdown" aria-expanded="false" style="background: #553566">
+                    Select Tool
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-bs-display="static">
+                    <li><a class="dropdown-item" href="/home">Home</a></li>
+                    <li><a class="dropdown-item" href="/symbols">Symbols</a></li>
+                    <li><a class="dropdown-item" href="/textGenerator">Text Generator</a></li>
+                    <li><a class="dropdown-item" href="/wordCounter">Word Counter</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <div class="categories" id="categories">
+          <button class="category-btn active" data-category="all">
+            All
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-bs-display="static">
-            <li><a class="dropdown-item" href="/home">Home</a></li>
-            <li><a class="dropdown-item" href="/symbols">Symbols</a></li>
-            <li><a class="dropdown-item" href="/textGenerator">Text Generator</a></li>
-            <li><a class="dropdown-item" href="/wordCounter">Word Counter</a></li>
-          </ul>
-        </div>
+          <button class="category-btn" data-category="smilesAndPeople">
+            <span class="emoji">😀</span> <span class="label">Smileys & People</span>
+          </button>
+          <button class="category-btn" data-category="animalsAndNature">
+            <span class="emoji">🐶</span> <span class="label">Animals & Nature</span>
+          </button>
+          <button class="category-btn" data-category="foodAndDrink">
+            <span class="emoji">🍕</span> <span class="label">Food & Drink</span>
+          </button>
+          <button class="category-btn" data-category="travelAndPlaces">
+            <span class="emoji">✈️</span> <span class="label">Travel & Places</span>
+          </button>
+          <button class="category-btn" data-category="activities">
+            <span class="emoji">⚽</span> <span class="label">Activities</span>
+          </button>
+          <button class="category-btn" data-category="objects">
+            <span class="emoji">💡</span> <span class="label">Objects</span>
+          </button>
+          <button class="category-btn" data-category="symbols">
+            <span class="emoji">❤️</span> <span class="label">Symbols</span>
+          </button>
+          <button class="category-btn" data-category="flags">
+            <span class="emoji">🏳️</span> <span class="label">Flags</span>
+          </button>
+      </div>
+
+
+      <div class="emoji-table mb-4">
+          <table>
+            <tbody>
+            <tr th:each="emojiList : ${emojies}">
+              <td th:text="${emojiList[0]}" th:if="${emojiList.size() > 0}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[1]}" th:if="${emojiList.size() > 1}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[2]}" th:if="${emojiList.size() > 2}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[3]}" th:if="${emojiList.size() > 3}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[4]}" th:if="${emojiList.size() > 4}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[5]}" th:if="${emojiList.size() > 5}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[6]}" th:if="${emojiList.size() > 6}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[7]}" th:if="${emojiList.size() > 7}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[8]}" th:if="${emojiList.size() > 8}" onclick="copyToClipboard(this)"></td>
+              <td th:text="${emojiList[9]}" th:if="${emojiList.size() > 9}" onclick="copyToClipboard(this)"></td>
+            </tr>
+            </tbody>
+          </table>
+      </div>
+
+      <div class="modern-section text-white py-5 px-3 mt-5 rounded-4">
+          <div class="container">
+              <div class="row align-items-center justify-content-center text-center text-md-start">
+                  <div class="col-12 col-md-5 mb-4 mb-md-0">
+                      <h2 class="fw-bold display-6 mb-3">🚀 Here We Go!</h2>
+                      <p class="fs-5">
+                        Enhance your <span class="highlight">messages</span>,
+                        <span class="highlight">social posts</span>, and
+                        <span class="highlight">creative projects</span> effortlessly.
+                      </p>
+                  </div>
+
+                  <div class="col-12 col-md-7">
+                      <div class="row g-4 justify-content-center">
+                          <div class="col-6 col-md-5">
+                              <div class="feature-card text-center p-4 rounded-4 h-100 shadow-sm">
+                                <i class="bi bi-emoji-smile-fill feature-icon"></i>
+                                <h4 class="fw-bold mt-2">Emojis</h4>
+                                <p>Copy and combine fun emoji sets instantly.</p>
+                              </div>
+                          </div>
+                          <div class="col-6 col-md-5">
+                              <div class="feature-card text-center p-4 rounded-4 h-100 shadow-sm">
+                                <i class="bi bi-stars feature-icon"></i>
+                                <h4 class="fw-bold mt-2">Symbols</h4>
+                                <p>Explore unique characters and fancy icons.</p>
+                              </div>
+                          </div>
+                          <div class="col-6 col-md-5">
+                              <div class="feature-card text-center p-4 rounded-4 h-100 shadow-sm">
+                                <i class="bi bi-type feature-icon"></i>
+                                <h4 class="fw-bold mt-2">Text Generator</h4>
+                                <p>Convert your text into stylish new fonts.</p>
+                              </div>
+                          </div>
+                          <div class="col-6 col-md-5">
+                              <div class="feature-card text-center p-4 rounded-4 h-100 shadow-sm">
+                                <i class="bi bi-journal-text feature-icon"></i>
+                                <h4 class="fw-bold mt-2">Word Counter</h4>
+                                <p>Count words, characters, and spaces easily.</p>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="footer">
+        COPYRIGHT © 2010-2025 EMOJITEXTTOOLS.COM ALL RIGHTS RESERVED.
       </div>
     </div>
-
-    <div class="categories" id="categories">
-      <button class="category-btn active" data-category="all">
-        All
-      </button>
-      <button class="category-btn" data-category="smilesAndPeople">
-        <span class="emoji">😀</span> <span class="label">Smileys & People</span>
-      </button>
-      <button class="category-btn" data-category="animalsAndNature">
-        <span class="emoji">🐶</span> <span class="label">Animals & Nature</span>
-      </button>
-      <button class="category-btn" data-category="foodAndDrink">
-        <span class="emoji">🍕</span> <span class="label">Food & Drink</span>
-      </button>
-      <button class="category-btn" data-category="travelAndPlaces">
-        <span class="emoji">✈️</span> <span class="label">Travel & Places</span>
-      </button>
-      <button class="category-btn" data-category="activities">
-        <span class="emoji">⚽</span> <span class="label">Activities</span>
-      </button>
-      <button class="category-btn" data-category="objects">
-        <span class="emoji">💡</span> <span class="label">Objects</span>
-      </button>
-      <button class="category-btn" data-category="symbols">
-        <span class="emoji">❤️</span> <span class="label">Symbols</span>
-      </button>
-      <button class="category-btn" data-category="flags">
-        <span class="emoji">🏳️</span> <span class="label">Flags</span>
-      </button>
-    </div>
-
-
-    <div class="emoji-table mb-4">
-      <table>
-        <tbody>
-        <tr th:each="emojiList : ${emojies}">
-          <td th:text="${emojiList[0]}" th:if="${emojiList.size() > 0}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[1]}" th:if="${emojiList.size() > 1}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[2]}" th:if="${emojiList.size() > 2}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[3]}" th:if="${emojiList.size() > 3}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[4]}" th:if="${emojiList.size() > 4}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[5]}" th:if="${emojiList.size() > 5}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[6]}" th:if="${emojiList.size() > 6}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[7]}" th:if="${emojiList.size() > 7}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[8]}" th:if="${emojiList.size() > 8}" onclick="copyToClipboard(this)"></td>
-          <td th:text="${emojiList[9]}" th:if="${emojiList.size() > 9}" onclick="copyToClipboard(this)"></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="row" style="background-color: #553566;">
-      <div class="col-12 col-md-5 d-flex flex-column justify-content-center p-3">
-        <h1 class="align-self-md-end">Here we go!</h1>
-        <p class="align-self-md-end"> Enhance your messages, social media posts, and creative projects effortlessly. </p>
-      </div>
-      <div class="col-12 col-md-7">
-        <div class="row g-3 mt-2 mb-3 justify-content-center">
-          <div class="col-6 col-md-5">
-            <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
-              <h3 class="fw-bold text-center">Emojis</h3>
-              <p class="text-center">Copy and paste emojis or create fun emoji combinations.</p>
-            </div>
-          </div>
-          <div class="col-6 col-md-5">
-            <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
-              <h3 class="fw-bold text-center">Symbols</h3>
-              <p class="text-center">Explore a vast collection of symbols and special characters.</p>
-            </div>
-          </div>
-          <div class="col-6 col-md-5">
-            <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
-              <h3 class="fw-bold text-center">Text Generator</h3>
-              <p class="text-center">Convert your plain text into bold, italic, or decorative fonts.</p>
-            </div>
-          </div>
-          <div class="col-6 col-md-5">
-            <div class="bg-white d-flex flex-column justify-content-center align-items-center h-100 p-4 rounded">
-              <h3 class="fw-bold text-center">Word Counter</h3>
-              <p class="text-center">Easily count words, characters, and spaces.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>
-
-
-<div class="footer">
-  COPYRIGHT © 2010-2025 EMOJITEXTTOOLS.COM ALL RIGHTS RESERVED.
-</div>
-</div>
 
 
 <script>
