@@ -240,6 +240,17 @@
           </div>
       </div>
 
+        <div class="row justify-content-center mb-3">
+            <form th:action="@{/emojies}" method="get" class="w-50 text-center" id="searchForm">
+                <input type="hidden" name="category" th:value="${selectedCategory}">
+                <input type="text" name="query" class="form-control text-center rounded-4"
+                       placeholder="Search Emoji"
+                       th:value="${query}"
+                       id="searchInput"
+                       autocomplete="off">
+            </form>
+        </div>
+
       <div class="categories" id="categories">
           <button class="category-btn active" data-category="all">
             All
@@ -274,18 +285,18 @@
       <div class="emoji-table mb-4">
           <table>
             <tbody>
-            <tr th:each="emojiList : ${emojies}">
-              <td th:text="${emojiList[0]}" th:if="${emojiList.size() > 0}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[1]}" th:if="${emojiList.size() > 1}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[2]}" th:if="${emojiList.size() > 2}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[3]}" th:if="${emojiList.size() > 3}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[4]}" th:if="${emojiList.size() > 4}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[5]}" th:if="${emojiList.size() > 5}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[6]}" th:if="${emojiList.size() > 6}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[7]}" th:if="${emojiList.size() > 7}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[8]}" th:if="${emojiList.size() > 8}" onclick="copyToClipboard(this)"></td>
-              <td th:text="${emojiList[9]}" th:if="${emojiList.size() > 9}" onclick="copyToClipboard(this)"></td>
-            </tr>
+                <tr th:each="emojiList : ${emojies}">
+                  <td th:text="${emojiList[0].emoji}" th:if="${emojiList.size() > 0}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[1].emoji}" th:if="${emojiList.size() > 1}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[2].emoji}" th:if="${emojiList.size() > 2}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[3].emoji}" th:if="${emojiList.size() > 3}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[4].emoji}" th:if="${emojiList.size() > 4}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[5].emoji}" th:if="${emojiList.size() > 5}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[6].emoji}" th:if="${emojiList.size() > 6}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[7].emoji}" th:if="${emojiList.size() > 7}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[8].emoji}" th:if="${emojiList.size() > 8}" onclick="copyToClipboard(this)"></td>
+                  <td th:text="${emojiList[9].emoji}" th:if="${emojiList.size() > 9}" onclick="copyToClipboard(this)"></td>
+                </tr>
             </tbody>
           </table>
       </div>
@@ -372,6 +383,17 @@
       alert("Copied: " + emoji);
     });
   }
+
+  const input = document.getElementById('searchInput');
+  const form = document.getElementById('searchForm');
+  let timer;
+
+  input.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+          form.submit();
+      }, 1000);
+  });
 </script>
 
 

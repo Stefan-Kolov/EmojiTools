@@ -1,5 +1,6 @@
 package com.emojitexttools.emojitexttools.service.impl;
 
+import com.emojitexttools.emojitexttools.model.Emoji;
 import com.emojitexttools.emojitexttools.repository.EmojiRepository;
 import com.emojitexttools.emojitexttools.service.EmojiService;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,13 @@ public class EmojiServiceImpl implements EmojiService {
     }
 
     @Override
-    public List<String> findAll() {
-        return emojiRepository.findAll();
+    public List<Emoji> findByCategory(String category) {
+        return emojiRepository.findByCategory(category);
     }
 
     @Override
-    public List<String> findByCategory(String category) {
-        return emojiRepository.findByCategory(category);
+    public List<Emoji> findByName(String name) {
+        return emojiRepository.findByName(name);
     }
 
 }

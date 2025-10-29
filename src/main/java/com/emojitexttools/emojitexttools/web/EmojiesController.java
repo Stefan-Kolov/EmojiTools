@@ -1,5 +1,6 @@
 package com.emojitexttools.emojitexttools.web;
 
+import com.emojitexttools.emojitexttools.model.Emoji;
 import com.emojitexttools.emojitexttools.service.impl.EmojiServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +19,29 @@ public class EmojiesController {
     }
 
     @GetMapping("/emojies")
-    public String getEmojies(@RequestParam(defaultValue = "all") String category, Model model) {
-        List<String> selectedEmojies = emojiService.findByCategory(category);
-        List<List<String>> partitionedEmojis = new ArrayList<>();
+    public String getEmojies(
+            @RequestParam(defaultValue = "all") String category,
+            @RequestParam(value = "query", required = false) String query,
+            Model model) {
+
+        List<Emoji> selectedEmojies;
+
+        if (query != null && !query.trim().isEmpty()) {
+            selectedEmojies = emojiService.findByName(query);
+        }
+        else {
+            selectedEmojies = emojiService.findByCategory(category);
+        }
+
+        List<List<Emoji>> partitionedEmojis = new ArrayList<>();
         for (int i = 0; i < selectedEmojies.size(); i += 10) {
             partitionedEmojis.add(selectedEmojies.subList(i, Math.min(i + 10, selectedEmojies.size())));
         }
-        model.addAttribute("emojies",partitionedEmojis);
+
+        model.addAttribute("emojies", partitionedEmojis);
         model.addAttribute("selectedCategory", category);
+        model.addAttribute("query", query);
+
         return "emojies";
     }
 }

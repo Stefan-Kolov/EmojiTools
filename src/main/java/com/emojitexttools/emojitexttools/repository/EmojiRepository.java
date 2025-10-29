@@ -1,42 +1,36 @@
 package com.emojitexttools.emojitexttools.repository;
 
 import com.emojitexttools.emojitexttools.bootstrap.DataHolder;
+import com.emojitexttools.emojitexttools.model.Emoji;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class EmojiRepository {
-    public List<String> findAll(){
-        return DataHolder.allEmojis;
+    public List<Emoji> findByCategory(String category){
+        return switch (category) {
+            case "all" -> DataHolder.allEmojis;
+            case "smilesAndPeople" -> DataHolder.smilesAndPeople;
+            case "animalsAndNature" -> DataHolder.animalsAndNature;
+            case "foodAndDrink" -> DataHolder.foodAndDrink;
+            case "travelAndPlaces" -> DataHolder.travelAndPlaces;
+            case "activities" -> DataHolder.activities;
+            case "objects" -> DataHolder.objects;
+            case "symbols" -> DataHolder.symbols;
+            default -> DataHolder.flags;
+        };
     }
 
-    public List<String> findByCategory(String category){
-        if(category.equals("all")){
-            return DataHolder.allEmojis;
+    public List<Emoji> findByName(String text){
+        List<Emoji> emojies = new ArrayList<>();
+
+        for(Emoji emoji : DataHolder.allEmojis){
+            if(emoji.getName().toLowerCase().contains(text.toLowerCase())){
+                emojies.add(emoji);
+            }
         }
-        else if(category.equals("smilesAndPeople")){
-            return DataHolder.smilesAndPeople;
-        }
-        else if(category.equals("animalsAndNature")){
-            return DataHolder.animalsAndNature;
-        }
-        else if(category.equals("foodAndDrink")){
-            return DataHolder.foodAndDrink;
-        }
-        else if(category.equals("travelAndPlaces")){
-            return DataHolder.travelAndPlaces;
-        }
-        else if(category.equals("activities")){
-            return DataHolder.activities;
-        }
-        else if(category.equals("objects")){
-            return DataHolder.objects;
-        }
-        else if(category.equals("symbols")){
-            return DataHolder.symbols;
-        }
-        else{
-            return DataHolder.flags;
-        }
+        return emojies;
     }
 }
