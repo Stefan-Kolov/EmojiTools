@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Emoji Picker</title>
+    <title>Emoji Copy & Paste – Fun Emoji Combinations | Emojitexttools</title>
+    <meta name="description" content="100% free to use. Copy and paste emojis instantly or explore creative emoji combinations for your posts, chats, and social content.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -12,7 +13,6 @@
           font-family: Arial, sans-serif;
           background-color: #f9ecd7;
           box-sizing: border-box;
-          margin-top: 50px;
           margin-right: 50px;
           margin-left: 50px;
         }
@@ -51,7 +51,7 @@
           border-color: #667eea;
         }
 
-        .emoji-table {
+        .symbol-table {
           overflow-x: auto;
         }
 
@@ -91,9 +91,11 @@
           text-align: center;
           padding: 20px;
           font-size: 14px;
+          color: #5a2a83;
+          font-weight: bold;
         }
 
-        .emoji-table {
+        .symbol-table {
           overflow-x: unset;
         }
 
@@ -141,6 +143,90 @@
           color: #d47f41;
         }
 
+        .logo {
+            width: 220px;
+            height: auto;
+        }
+
+        .btn-animated {
+            background: linear-gradient(135deg, #553566, #6a4390, #d47f41);
+            background-size: 200% 200%;
+            color: white;
+            border: none;
+            animation: gradientShift 5s ease infinite;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-animated:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .dropdown .dropdown-toggle::after {
+            margin-left: .5rem;
+            vertical-align: 0.1rem;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+        }
+
+        .dropdown-menu {
+            background: linear-gradient(135deg, rgba(85,53,102,0.98), rgba(106,67,144,0.98), rgba(212,127,65,0.98));
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
+            border: none;
+            border-radius: 12px;
+            padding: 0.35rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            min-width: 180px;
+            z-index: 1200;
+        }
+
+        .dropdown-menu {
+            transform-origin: top right;
+            transition: transform .15s ease, opacity .15s ease;
+            opacity: 0;
+            transform: scale(.98);
+            pointer-events: none;
+        }
+
+        .dropdown.show .dropdown-menu,
+        .dropdown-menu.show {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            margin-top: 8px !important;
+        }
+
+        .dropdown-item {
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 20px;
+            transition: background-color .18s ease, transform .18s ease;
+        }
+
+        .dropdown-item:hover, .dropdown-item:focus {
+            background-color: rgba(255,255,255,0.10);
+            transform: translateX(6px);
+            color: #fff;
+        }
+
+        .dropdown-divider {
+            margin: .25rem 0;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+
         @media (max-width: 768px) {
           .categories {
             flex-wrap: nowrap;
@@ -172,7 +258,7 @@
             font-size: 0.8rem;
           }
 
-          .emoji-table table {
+          .symbol-table table {
             width: 100%;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
@@ -180,12 +266,12 @@
             border-collapse: collapse;
           }
 
-          .emoji-table tr,
-          .emoji-table tbody {
+          .symbol-table tr,
+          .symbol-table tbody {
             display: contents;
           }
 
-          .emoji-table td {
+          .symbol-table td {
             border: 1px solid #ddd;
             padding: 10px;
             font-size: 1.5rem;
@@ -193,7 +279,7 @@
             transition: transform 0.2s ease;
           }
 
-          .emoji-table td:hover {
+          .symbol-table td:hover {
             transform: scale(1.2);
             background-color: #f0f0f0;
           }
@@ -218,23 +304,56 @@
           .modern-section p {
             font-size: 1rem;
           }
+
+          .modern-section .row.g-4 {
+              justify-content: center !important;
+          }
+          .modern-section .feature-card {
+              margin: 0 auto;
+              max-width: 260px;
+          }
+
+          .modern-section .col-6 {
+              flex: 0 0 100%;
+              max-width: 100%;
+          }
+
+          #searchForm {
+              width: 90% !important;
+          }
+
+          #searchInput {
+              width: 100% !important;
+              font-size: 1rem;
+          }
+
         }
     </style>
 </head>
 <body>
     <div class="container-fluid">
       <div class="row mb-5">
-          <div class="d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
+              <div>
+                  <a href="/home">
+                      <img src="/logo.png" alt="EmojiTextTools Logo" class="logo" onclick="/home">
+                  </a>
+              </div>
+
               <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                          data-bs-toggle="dropdown" aria-expanded="false" style="background: #553566">
-                    Select Tool
+                  <button class="btn btn-animated dropdown-toggle rounded-5" type="button"
+                          id="dropdownMenuButton"
+                          data-bs-toggle="dropdown" aria-expanded="false"
+                          style="width: 150px; height: 50px;">
+                      Select Tool
                   </button>
+
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-bs-display="static">
-                    <li><a class="dropdown-item" href="/home">Home</a></li>
-                    <li><a class="dropdown-item" href="/symbols">Symbols</a></li>
-                    <li><a class="dropdown-item" href="/textGenerator">Text Generator</a></li>
-                    <li><a class="dropdown-item" href="/wordCounter">Word Counter</a></li>
+                      <li><a class="dropdown-item" href="/home">Home</a></li>
+                      <li><a class="dropdown-item" href="/symbols">Symbols</a></li>
+                      <li><a class="dropdown-item" href="/textGenerator">Text Generator</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="/wordCounter">Emojies</a></li>
                   </ul>
               </div>
           </div>
@@ -247,7 +366,9 @@
                        placeholder="Search Emoji"
                        th:value="${query}"
                        id="searchInput"
-                       autocomplete="off">
+                       autocomplete="off"
+                       style="height: 50px;"
+                >
             </form>
         </div>
 
@@ -350,9 +471,16 @@
       </div>
 
 
-      <div class="footer">
-        COPYRIGHT © 2010-2025 EMOJITEXTTOOLS.COM ALL RIGHTS RESERVED.
-      </div>
+        <div class="footer">
+            COPYRIGHT © 2010-2025 EMOJITEXTTOOLS.COM <br> ALL RIGHTS RESERVED.<br>
+            <a href="/privacyPolicy.html" style="color: #5a2a83; font-weight: bold; text-decoration: none;">
+                Privacy Policy
+            </a>
+            &
+            <a href="/cookiePolicy.html" style="color: #5a2a83; font-weight: bold; text-decoration: none;">
+                Cookie Policy
+            </a>
+        </div>
     </div>
 
 
@@ -392,7 +520,7 @@
       clearTimeout(timer);
       timer = setTimeout(() => {
           form.submit();
-      }, 1000);
+      }, 700);
   });
 </script>
 
