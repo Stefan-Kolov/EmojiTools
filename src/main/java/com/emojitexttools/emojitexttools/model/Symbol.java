@@ -8,34 +8,32 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Emoji {
+public class Symbol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String emoji;
+    private String symbol;
     private String name;
     private String category;
 
-    public Emoji(String emoji, String name) {
-        this.emoji = emoji;
+    public Symbol(String symbol, String name) {
+        this.symbol = symbol;
         this.name = name;
     }
 
-    public Emoji() {
+    public Symbol() {
 
     }
 
-    public String getEmoji() {
-        return emoji;
+    public String getSymbol() {
+        return symbol;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getCategory() {
-        return category;
-    }
+    public String getCategory() {return category;}
 
     public void setCategory(String category) {
         this.category = category;

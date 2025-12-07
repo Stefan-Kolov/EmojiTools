@@ -5,6 +5,7 @@ import com.emojitexttools.emojitexttools.repository.BlogRepository;
 import com.emojitexttools.emojitexttools.service.BlogService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,11 +19,11 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> findAll() {
-        return blogRepository.findAll();
+        return new ArrayList<>();
     }
 
     @Override
     public Blog add(Blog blog) {
-        return blogRepository.addBlog(blog);
+        return null;
     }
 }

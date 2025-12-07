@@ -1,7 +1,7 @@
 package com.emojitexttools.emojitexttools.web;
 
 import com.emojitexttools.emojitexttools.model.Emoji;
-import com.emojitexttools.emojitexttools.service.impl.EmojiServiceImpl;
+import com.emojitexttools.emojitexttools.service.EmojiService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +12,9 @@ import java.util.List;
 
 @Controller
 public class EmojiesController {
-    private final EmojiServiceImpl emojiService;
+    private final EmojiService emojiService;
 
-    public EmojiesController(EmojiServiceImpl emojiService) {
+    public EmojiesController(EmojiService emojiService) {
         this.emojiService = emojiService;
     }
 
@@ -28,8 +28,9 @@ public class EmojiesController {
 
         if (query != null && !query.trim().isEmpty()) {
             selectedEmojies = emojiService.findByName(query);
-        }
-        else {
+        } else if (category.equals("all")) {
+            selectedEmojies = emojiService.findAll();
+        } else {
             selectedEmojies = emojiService.findByCategory(category);
         }
 

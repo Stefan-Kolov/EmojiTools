@@ -7,4 +7,5 @@ import java.util.List;
 public interface EmojiService {
     List<Emoji> findByCategory(String category);
     List<Emoji> findByName(String name);
+    List<Emoji> findAll();
 }

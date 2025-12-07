@@ -1,7 +1,9 @@
 package com.emojitexttools.emojitexttools.bootstrap;
 
-import com.emojitexttools.emojitexttools.model.Blog;
 import com.emojitexttools.emojitexttools.model.Emoji;
+import com.emojitexttools.emojitexttools.model.Symbol;
+import com.emojitexttools.emojitexttools.repository.EmojiRepository;
+import com.emojitexttools.emojitexttools.repository.SymbolRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
@@ -19,9 +21,29 @@ public class DataHolder {
     public static List<Emoji> objects = new ArrayList<>();
     public static List<Emoji> symbols = new ArrayList<>();
     public static List<Emoji> flags = new ArrayList<>();
-    public static List<Blog> blogs = new ArrayList<>();
+
+    public static List<Symbol> allSymbols = new ArrayList<>();
+    public static List<Symbol> starsDecorative = new ArrayList<>();
+    public static List<Symbol> copyrightTrademark = new ArrayList<>();
+    public static List<Symbol> currency = new ArrayList<>();
+    public static List<Symbol> game = new ArrayList<>();
+    public static List<Symbol> musical = new ArrayList<>();
+    public static List<Symbol> weather = new ArrayList<>();
+    public static List<Symbol> arrows = new ArrayList<>();
+    public static List<Symbol> punctuation = new ArrayList<>();
+    public static List<Symbol> math = new ArrayList<>();
+    public static List<Symbol> numbers = new ArrayList<>();
+
+    private final EmojiRepository emojiRepository;
+    private final SymbolRepository symbolRepository;
+
+    public DataHolder(EmojiRepository emojiRepository, SymbolRepository symbolRepository) {
+        this.emojiRepository = emojiRepository;
+        this.symbolRepository = symbolRepository;
+    }
 
 
+    /*
     @PostConstruct
     public void init(){
         smilesAndPeople.add(new Emoji("😀", "Grinning Face"));
@@ -263,6 +285,11 @@ public class DataHolder {
         smilesAndPeople.add(new Emoji("🧘‍♀️", "Woman in Lotus Position"));
         smilesAndPeople.add(new Emoji("🧘‍♂️", "Man in Lotus Position"));
 
+        for (Emoji emoji : smilesAndPeople){
+            emoji.setCategory("smilesAndPeople");
+            emojiRepository.save(emoji);
+        };
+
         // Animals
         animalsAndNature.add(new Emoji("🐶", "Dog Face"));
         animalsAndNature.add(new Emoji("🐱", "Cat Face"));
@@ -421,6 +448,11 @@ public class DataHolder {
         animalsAndNature.add(new Emoji("☔", "Umbrella with Rain Drops"));
         animalsAndNature.add(new Emoji("🌊", "Water Wave"));
 
+        for (Emoji emoji : animalsAndNature){
+            emoji.setCategory("animalsAndNature");
+            emojiRepository.save(emoji);
+        };
+
         // Food & Drink
         foodAndDrink.add(new Emoji("🍏", "Green Apple"));
         foodAndDrink.add(new Emoji("🍎", "Red Apple"));
@@ -521,6 +553,11 @@ public class DataHolder {
         foodAndDrink.add(new Emoji("🍾", "Bottle with Popping Cork"));
         foodAndDrink.add(new Emoji("🧊", "Ice"));
 
+        for (Emoji emoji : foodAndDrink){
+            emoji.setCategory("foodAndDrink");
+            emojiRepository.save(emoji);
+        };
+
         // Travel & Places
         travelAndPlaces.add(new Emoji("🚗", "Car"));
         travelAndPlaces.add(new Emoji("🚕", "Taxi"));
@@ -613,6 +650,10 @@ public class DataHolder {
         travelAndPlaces.add(new Emoji("🎪", "Circus Tent"));
         travelAndPlaces.add(new Emoji("🗿", "Moai"));
 
+        for (Emoji emoji : travelAndPlaces){
+            emoji.setCategory("travelAndPlaces");
+            emojiRepository.save(emoji);
+        };
 
         // Activities
         activities.add(new Emoji("⚽", "Soccer Ball"));
@@ -697,6 +738,11 @@ public class DataHolder {
         activities.add(new Emoji("🎪", "Circus Tent"));
         activities.add(new Emoji("🎟️", "Admission Tickets"));
         activities.add(new Emoji("🎫", "Ticket"));
+
+        for (Emoji emoji : activities){
+            emoji.setCategory("activities");
+            emojiRepository.save(emoji);
+        };
 
         // Objects
         objects.add(new Emoji("⌚", "Watch"));
@@ -800,6 +846,11 @@ public class DataHolder {
         objects.add(new Emoji("🎏", "Carp Streamer"));
         objects.add(new Emoji("🎀", "Ribbon"));
         objects.add(new Emoji("🪁", "Kite"));
+
+        for (Emoji emoji : objects){
+            emoji.setCategory("objects");
+            emojiRepository.save(emoji);
+        };
 
         // Symbols
         symbols.add(new Emoji("💓", "Beating Heart"));
@@ -945,6 +996,11 @@ public class DataHolder {
         symbols.add(new Emoji("™️", "Trade Mark"));
         symbols.add(new Emoji("©️", "Copyright"));
         symbols.add(new Emoji("®️", "Registered"));
+
+        for (Emoji emoji : symbols){
+            emoji.setCategory("symbols");
+            emojiRepository.save(emoji);
+        };
 
         // Flags
         flags.add(new Emoji("🇦🇮", "Anguilla Flag"));
@@ -1179,11 +1235,564 @@ public class DataHolder {
         flags.add(new Emoji("🇿🇲", "Zambia Flag"));
         flags.add(new Emoji("🇿🇼", "Zimbabwe Flag"));
 
+        for (Emoji emoji : flags){
+            emoji.setCategory("flags");
+            emojiRepository.save(emoji);
+        };
 
+        // Stars & Decorative Symbols
+        starsDecorative.add(new Symbol("★", "Black Star"));
+        starsDecorative.add(new Symbol("☆", "White Star"));
+        starsDecorative.add(new Symbol("✦", "Four Pointed Star"));
+        starsDecorative.add(new Symbol("✧", "Sparkle Star"));
+        starsDecorative.add(new Symbol("✩", "Star Outline"));
+        starsDecorative.add(new Symbol("✪", "Circled Star"));
+        starsDecorative.add(new Symbol("✫", "Outlined Black Star"));
+        starsDecorative.add(new Symbol("✬", "Outlined White Star"));
+        starsDecorative.add(new Symbol("✭", "Heavy Star"));
+        starsDecorative.add(new Symbol("✮", "Shadowed Star"));
+        starsDecorative.add(new Symbol("✯", "White Large Star"));
+        starsDecorative.add(new Symbol("✰", "Outlined Star with Shadow"));
+        starsDecorative.add(new Symbol("✱", "Asterisk"));
+        starsDecorative.add(new Symbol("✲", "Eight Spoked Asterisk"));
+        starsDecorative.add(new Symbol("✳", "Eight Pointed Star"));
+        starsDecorative.add(new Symbol("✴", "Eight Pointed Pinwheel Star"));
+        starsDecorative.add(new Symbol("✵", "Six Pointed Star"));
+        starsDecorative.add(new Symbol("✶", "Black Six Pointed Star"));
+        starsDecorative.add(new Symbol("✷", "White Six Pointed Star"));
+        starsDecorative.add(new Symbol("✸", "Six Pointed Star with Shadow"));
+        starsDecorative.add(new Symbol("✹", "Four Teardrop-Spoked Asterisk"));
+        starsDecorative.add(new Symbol("✺", "Heavy Teardrop-Spoked Asterisk"));
+        starsDecorative.add(new Symbol("✻", "Open Centre Star"));
+        starsDecorative.add(new Symbol("✼", "Heavy Open Centre Star"));
+        starsDecorative.add(new Symbol("✽", "Star with Right Half Black"));
+        starsDecorative.add(new Symbol("✾", "Star with Left Half Black"));
+        starsDecorative.add(new Symbol("❀", "Black Four Petalled Flower"));
+        starsDecorative.add(new Symbol("❁", "White Four Petalled Flower"));
+        starsDecorative.add(new Symbol("❂", "Sun with Rays"));
+        starsDecorative.add(new Symbol("❃", "Black Sun with Rays"));
+        starsDecorative.add(new Symbol("❄", "Snowflake"));
+        starsDecorative.add(new Symbol("❅", "Tight Snowflake"));
+        starsDecorative.add(new Symbol("❆", "Heavy Snowflake"));
+        starsDecorative.add(new Symbol("❇", "Sparkle"));
+        starsDecorative.add(new Symbol("❈", "Heavy Sparkle"));
+        starsDecorative.add(new Symbol("❉", "Balloon-Sparkle"));
+        starsDecorative.add(new Symbol("❊", "Decorative Florette"));
+        starsDecorative.add(new Symbol("❋", "Heavy Decorative Florette"));
+        starsDecorative.add(new Symbol("❌", "Cross Mark"));
+        starsDecorative.add(new Symbol("❎", "Negative Squared Cross Mark"));
+        starsDecorative.add(new Symbol("❏", "White Square with Rounded Corners"));
+        starsDecorative.add(new Symbol("❐", "White Square with Shadow"));
+        starsDecorative.add(new Symbol("❑", "White Square"));
+        starsDecorative.add(new Symbol("❒", "White Square with Center Dot"));
+        starsDecorative.add(new Symbol("❓", "Black Question Mark Ornament"));
+        starsDecorative.add(new Symbol("❔", "White Question Mark Ornament"));
+        starsDecorative.add(new Symbol("❕", "White Exclamation Mark Ornament"));
+        starsDecorative.add(new Symbol("❗", "Black Exclamation Mark Ornament"));
+        starsDecorative.add(new Symbol("❖", "Black Diamond Minus White X"));
 
-        blogs.add(new Blog("Title","Description"));
-        blogs.add(new Blog("Title2","Description2"));
+        for (Symbol symbol : starsDecorative){
+            symbol.setCategory("starsDecorative");
+            symbolRepository.save(symbol);
+        };
+
+        // Copyright / Trademark & Office / Law Symbols
+        copyrightTrademark.add(new Symbol("©", "Copyright"));
+        copyrightTrademark.add(new Symbol("®", "Registered Trademark"));
+        copyrightTrademark.add(new Symbol("™", "Trademark"));
+        copyrightTrademark.add(new Symbol("℠", "Service Mark"));
+        copyrightTrademark.add(new Symbol("℗", "Sound Recording Copyright"));
+        copyrightTrademark.add(new Symbol("℞", "Prescription Symbol"));
+        copyrightTrademark.add(new Symbol("№", "Numero Sign"));
+        copyrightTrademark.add(new Symbol("§", "Section Sign"));
+        copyrightTrademark.add(new Symbol("¶", "Pilcrow Sign"));
+        copyrightTrademark.add(new Symbol("†", "Dagger"));
+        copyrightTrademark.add(new Symbol("‡", "Double Dagger"));
+        copyrightTrademark.add(new Symbol("⚖", "Scales of Justice"));
+        copyrightTrademark.add(new Symbol("⚙", "Gear"));
+        copyrightTrademark.add(new Symbol("⚒", "Hammer and Pick"));
+        copyrightTrademark.add(new Symbol("⚔", "Crossed Swords"));
+        copyrightTrademark.add(new Symbol("⚰", "Coffin"));
+        copyrightTrademark.add(new Symbol("⚱", "Funeral Urn"));
+        copyrightTrademark.add(new Symbol("⚜", "Fleur-de-lis"));
+        copyrightTrademark.add(new Symbol("☤", "Caduceus"));
+        copyrightTrademark.add(new Symbol("☥", "Ankh"));
+        copyrightTrademark.add(new Symbol("⚕", "Medical Symbol"));
+        copyrightTrademark.add(new Symbol("☮", "Peace Symbol"));
+        copyrightTrademark.add(new Symbol("☯", "Yin Yang"));
+        copyrightTrademark.add(new Symbol("☪", "Star and Crescent"));
+        copyrightTrademark.add(new Symbol("☦", "Orthodox Cross"));
+        copyrightTrademark.add(new Symbol("☧", "Chi-Rho"));
+        copyrightTrademark.add(new Symbol("☨", "Cross of Lorraine"));
+        copyrightTrademark.add(new Symbol("☩", "Cross of Jerusalem"));
+        copyrightTrademark.add(new Symbol("☫", "Cross of Constantinople"));
+        copyrightTrademark.add(new Symbol("☬", "Khanda"));
+        copyrightTrademark.add(new Symbol("☭", "Hammer and Sickle"));
+        copyrightTrademark.add(new Symbol("✝", "Latin Cross"));
+        copyrightTrademark.add(new Symbol("☸", "Wheel of Dharma"));
+        copyrightTrademark.add(new Symbol("🕉", "Om Symbol"));
+        copyrightTrademark.add(new Symbol("⚚", "Staff of Aesculapius"));
+        copyrightTrademark.add(new Symbol("☢", "Radioactive"));
+        copyrightTrademark.add(new Symbol("☣", "Biohazard"));
+        copyrightTrademark.add(new Symbol("☠", "Skull and Crossbones"));
+        copyrightTrademark.add(new Symbol("⚗", "Alchemy Symbol"));
+        copyrightTrademark.add(new Symbol("⚖️", "Justice Scales"));
+        copyrightTrademark.add(new Symbol("⚙️", "Gear Symbol"));
+        copyrightTrademark.add(new Symbol("⚕️", "Medical Symbol"));
+        copyrightTrademark.add(new Symbol("✡", "Star of David"));
+        copyrightTrademark.add(new Symbol("☪️", "Crescent Moon and Star"));
+        copyrightTrademark.add(new Symbol("☮️", "Peace Symbol"));
+        copyrightTrademark.add(new Symbol("☯️", "Yin Yang Symbol"));
+        copyrightTrademark.add(new Symbol("⚜️", "Fleur-de-lis Symbol"));
+
+        for (Symbol symbol : copyrightTrademark){
+            symbol.setCategory("copyrightTrademark");
+            symbolRepository.save(symbol);
+        };
+
+        // Currency Symbols
+        currency.add(new Symbol("$", "Dollar Sign"));
+        currency.add(new Symbol("¢", "Cent Sign"));
+        currency.add(new Symbol("£", "Pound Sign"));
+        currency.add(new Symbol("€", "Euro Sign"));
+        currency.add(new Symbol("¥", "Yen Sign"));
+        currency.add(new Symbol("₩", "Won Sign"));
+        currency.add(new Symbol("₫", "Dong Sign"));
+        currency.add(new Symbol("₭", "Kip Sign"));
+        currency.add(new Symbol("₮", "Tugrik Sign"));
+        currency.add(new Symbol("₱", "Peso Sign"));
+        currency.add(new Symbol("₹", "Indian Rupee"));
+        currency.add(new Symbol("₲", "Guarani Sign"));
+        currency.add(new Symbol("₴", "Hryvnia Sign"));
+        currency.add(new Symbol("₵", "Cedi Sign"));
+        currency.add(new Symbol("₸", "Tenge Sign"));
+        currency.add(new Symbol("₺", "Turkish Lira Sign"));
+        currency.add(new Symbol("₼", "Manat Sign"));
+        currency.add(new Symbol("₦", "Naira Sign"));
+        currency.add(new Symbol("₡", "Colon Sign"));
+        currency.add(new Symbol("₢", "Cruzeiro Sign"));
+        currency.add(new Symbol("₣", "Franc Sign"));
+        currency.add(new Symbol("₤", "Lira Sign"));
+        currency.add(new Symbol("₧", "Peseta Sign"));
+        currency.add(new Symbol("₨", "Rupee Sign"));
+        currency.add(new Symbol("₳", "Austral Sign"));
+        currency.add(new Symbol("₰", "Pfennig Sign"));
+        currency.add(new Symbol("₯", "Drachma Sign"));
+        currency.add(new Symbol("₠", "Euro-currency Sign"));
+        currency.add(new Symbol("₧", "Peseta Symbol"));
+        currency.add(new Symbol("₩", "Won Symbol"));
+        currency.add(new Symbol("₮", "Tugrik Symbol"));
+        currency.add(new Symbol("₢", "Cruzeiro Symbol"));
+        currency.add(new Symbol("₫", "Dong Symbol"));
+        currency.add(new Symbol("₭", "Kip Symbol"));
+        currency.add(new Symbol("₱", "Peso Symbol"));
+        currency.add(new Symbol("₲", "Guarani Symbol"));
+        currency.add(new Symbol("₳", "Austral Symbol"));
+        currency.add(new Symbol("₵", "Cedi Symbol"));
+        currency.add(new Symbol("₸", "Tenge Symbol"));
+        currency.add(new Symbol("₮", "Tugrik Symbol"));
+        currency.add(new Symbol("₺", "Turkish Lira Symbol"));
+        currency.add(new Symbol("₼", "Manat Symbol"));
+        currency.add(new Symbol("₦", "Naira Symbol"));
+        currency.add(new Symbol("₡", "Colon Symbol"));
+        currency.add(new Symbol("₣", "Franc Symbol"));
+        currency.add(new Symbol("₤", "Lira Symbol"));
+
+        for (Symbol symbol : currency){
+            symbol.setCategory("currency");
+            symbolRepository.save(symbol);
+        };
+
+        // Game / Chess / Card Symbols
+        game.add(new Symbol("♔", "White King"));
+        game.add(new Symbol("♕", "White Queen"));
+        game.add(new Symbol("♖", "White Rook"));
+        game.add(new Symbol("♗", "White Bishop"));
+        game.add(new Symbol("♘", "White Knight"));
+        game.add(new Symbol("♙", "White Pawn"));
+        game.add(new Symbol("♚", "Black King"));
+        game.add(new Symbol("♛", "Black Queen"));
+        game.add(new Symbol("♜", "Black Rook"));
+        game.add(new Symbol("♝", "Black Bishop"));
+        game.add(new Symbol("♞", "Black Knight"));
+        game.add(new Symbol("♟", "Black Pawn"));
+        game.add(new Symbol("♠", "Spade Suit"));
+        game.add(new Symbol("♣", "Club Suit"));
+        game.add(new Symbol("♥", "Heart Suit"));
+        game.add(new Symbol("♦", "Diamond Suit"));
+        game.add(new Symbol("♤", "White Spade Suit"));
+        game.add(new Symbol("♧", "White Club Suit"));
+        game.add(new Symbol("♡", "White Heart Suit"));
+        game.add(new Symbol("♢", "White Diamond Suit"));
+        game.add(new Symbol("⚀", "Die Face-1"));
+        game.add(new Symbol("⚁", "Die Face-2"));
+        game.add(new Symbol("⚂", "Die Face-3"));
+        game.add(new Symbol("⚃", "Die Face-4"));
+        game.add(new Symbol("⚄", "Die Face-5"));
+        game.add(new Symbol("⚅", "Die Face-6"));
+        game.add(new Symbol("🎲", "Game Die"));
+        game.add(new Symbol("🂡", "Ace of Spades"));
+        game.add(new Symbol("🂢", "Two of Spades"));
+        game.add(new Symbol("🂣", "Three of Spades"));
+        game.add(new Symbol("🂤", "Four of Spades"));
+        game.add(new Symbol("🂥", "Five of Spades"));
+        game.add(new Symbol("🂦", "Six of Spades"));
+        game.add(new Symbol("🂧", "Seven of Spades"));
+        game.add(new Symbol("🂨", "Eight of Spades"));
+        game.add(new Symbol("🂩", "Nine of Spades"));
+        game.add(new Symbol("🂪", "Ten of Spades"));
+        game.add(new Symbol("🂫", "Jack of Spades"));
+        game.add(new Symbol("🂭", "Queen of Spades"));
+        game.add(new Symbol("🂮", "King of Spades"));
+        game.add(new Symbol("🃁", "Ace of Hearts"));
+        game.add(new Symbol("🃂", "Two of Hearts"));
+        game.add(new Symbol("🃃", "Three of Hearts"));
+        game.add(new Symbol("🃄", "Four of Hearts"));
+        game.add(new Symbol("🃅", "Five of Hearts"));
+        game.add(new Symbol("🃆", "Six of Hearts"));
+        game.add(new Symbol("🃇", "Seven of Hearts"));
+        game.add(new Symbol("🃈", "Eight of Hearts"));
+        game.add(new Symbol("🃉", "Nine of Hearts"));
+        game.add(new Symbol("🃊", "Ten of Hearts"));
+        game.add(new Symbol("🃋", "Jack of Hearts"));
+
+        for (Symbol symbol : game){
+            symbol.setCategory("game");
+            symbolRepository.save(symbol);
+        };
+
+        // Musical Symbols
+        musical.add(new Symbol("♪", "Eighth Note"));
+        musical.add(new Symbol("♫", "Beamed Eighth Notes"));
+        musical.add(new Symbol("♩", "Quarter Note"));
+        musical.add(new Symbol("♬", "Beamed Sixteenth Notes"));
+        musical.add(new Symbol("♭", "Flat"));
+        musical.add(new Symbol("♮", "Natural"));
+        musical.add(new Symbol("♯", "Sharp"));
+        musical.add(new Symbol("𝄞", "G Clef"));
+        musical.add(new Symbol("𝄢", "F Clef"));
+        musical.add(new Symbol("𝄫", "Double Flat"));
+        musical.add(new Symbol("𝄪", "Double Sharp"));
+        musical.add(new Symbol("🎵", "Musical Note"));
+        musical.add(new Symbol("🎶", "Multiple Musical Notes"));
+        musical.add(new Symbol("🎷", "Saxophone"));
+        musical.add(new Symbol("🎸", "Guitar"));
+        musical.add(new Symbol("🎺", "Trumpet"));
+        musical.add(new Symbol("🎻", "Violin"));
+        musical.add(new Symbol("🥁", "Drum"));
+        musical.add(new Symbol("🔔", "Bell"));
+        musical.add(new Symbol("🔕", "Bell with Slash"));
+        musical.add(new Symbol("🔊", "Speaker High Volume"));
+        musical.add(new Symbol("🔉", "Speaker Medium Volume"));
+        musical.add(new Symbol("🔈", "Speaker Low Volume"));
+        musical.add(new Symbol("🔇", "Muted Speaker"));
+        musical.add(new Symbol("📢", "Loudspeaker"));
+        musical.add(new Symbol("📣", "Megaphone"));
+        musical.add(new Symbol("🎤", "Microphone"));
+        musical.add(new Symbol("🎧", "Headphone"));
+        musical.add(new Symbol("🎹", "Musical Keyboard"));
+        musical.add(new Symbol("🎼", "Musical Score"));
+        musical.add(new Symbol("🎵", "Musical Note 2"));
+        musical.add(new Symbol("🎶", "Multiple Notes 2"));
+        musical.add(new Symbol("🎷", "Saxophone 2"));
+        musical.add(new Symbol("🎸", "Guitar 2"));
+        musical.add(new Symbol("🎺", "Trumpet 2"));
+        musical.add(new Symbol("🎻", "Violin 2"));
+        musical.add(new Symbol("🥁", "Drum 2"));
+        musical.add(new Symbol("🔔", "Bell 2"));
+        musical.add(new Symbol("🔕", "Bell Off"));
+        musical.add(new Symbol("🔊", "Volume High"));
+        musical.add(new Symbol("🔉", "Volume Medium"));
+        musical.add(new Symbol("🔈", "Volume Low"));
+        musical.add(new Symbol("🔇", "Mute"));
+        musical.add(new Symbol("📢", "Speaker"));
+        musical.add(new Symbol("📣", "Megaphone 2"));
+        musical.add(new Symbol("🎤", "Mic"));
+        musical.add(new Symbol("🎧", "Headphones 2"));
+        musical.add(new Symbol("🎹", "Piano Keyboard"));
+
+        for (Symbol symbol : musical){
+            symbol.setCategory("musical");
+            symbolRepository.save(symbol);
+        };
+
+        // Weather / Degree / Unit Symbols
+        weather.add(new Symbol("°", "Degree"));
+        weather.add(new Symbol("℃", "Degree Celsius"));
+        weather.add(new Symbol("℉", "Degree Fahrenheit"));
+        weather.add(new Symbol("☀", "Sun"));
+        weather.add(new Symbol("☁", "Cloud"));
+        weather.add(new Symbol("☂", "Umbrella"));
+        weather.add(new Symbol("☃", "Snowman"));
+        weather.add(new Symbol("❄", "Snowflake"));
+        weather.add(new Symbol("⚡", "Lightning"));
+        weather.add(new Symbol("☔", "Rain"));
+        weather.add(new Symbol("☄", "Comet"));
+        weather.add(new Symbol("☾", "Crescent Moon"));
+        weather.add(new Symbol("☽", "Moon"));
+        weather.add(new Symbol("☼", "Sun with Rays"));
+        weather.add(new Symbol("⛅", "Sun Behind Cloud"));
+        weather.add(new Symbol("％", "Percent"));
+        weather.add(new Symbol("‰", "Per Mille"));
+        weather.add(new Symbol("‱", "Per Ten Thousand"));
+        weather.add(new Symbol("µ", "Micro"));
+        weather.add(new Symbol("Ω", "Ohm"));
+        weather.add(new Symbol("㎏", "Kilogram"));
+        weather.add(new Symbol("㎞", "Kilometer"));
+        weather.add(new Symbol("㎝", "Centimeter"));
+        weather.add(new Symbol("㎜", "Millimeter"));
+        weather.add(new Symbol("㏄", "Cubic Centimeter"));
+        weather.add(new Symbol("㏎", "Hertz"));
+        weather.add(new Symbol("㏑", "Natural Log"));
+        weather.add(new Symbol("㏒", "Log Base 10"));
+        weather.add(new Symbol("㏕", "Liter"));
+        weather.add(new Symbol("㏖", "Milliliter"));
+        weather.add(new Symbol("㏘", "Degree Fahrenheit 2"));
+        weather.add(new Symbol("㏙", "Degree Celsius 2"));
+        weather.add(new Symbol("⁰", "Superscript 0"));
+        weather.add(new Symbol("¹", "Superscript 1"));
+        weather.add(new Symbol("²", "Superscript 2"));
+        weather.add(new Symbol("³", "Superscript 3"));
+        weather.add(new Symbol("⁴", "Superscript 4"));
+        weather.add(new Symbol("⁵", "Superscript 5"));
+        weather.add(new Symbol("⁶", "Superscript 6"));
+        weather.add(new Symbol("⁷", "Superscript 7"));
+        weather.add(new Symbol("⁸", "Superscript 8"));
+        weather.add(new Symbol("⁹", "Superscript 9"));
+        weather.add(new Symbol("⁺", "Superscript Plus"));
+        weather.add(new Symbol("⁻", "Superscript Minus"));
+        weather.add(new Symbol("⁼", "Superscript Equals"));
+        weather.add(new Symbol("⁽", "Superscript Left Parenthesis"));
+        weather.add(new Symbol("⁾", "Superscript Right Parenthesis"));
+        weather.add(new Symbol("ⁿ", "Superscript n"));
+
+        for (Symbol symbol : weather){
+            symbol.setCategory("weather");
+            symbolRepository.save(symbol);
+        };
+
+        // Arrows & Directions
+        arrows.add(new Symbol("↑", "Up Arrow"));
+        arrows.add(new Symbol("↓", "Down Arrow"));
+        arrows.add(new Symbol("←", "Left Arrow"));
+        arrows.add(new Symbol("→", "Right Arrow"));
+        arrows.add(new Symbol("↕", "Up Down Arrow"));
+        arrows.add(new Symbol("↔", "Left Right Arrow"));
+        arrows.add(new Symbol("↖", "Up Left Arrow"));
+        arrows.add(new Symbol("↗", "Up Right Arrow"));
+        arrows.add(new Symbol("↘", "Down Right Arrow"));
+        arrows.add(new Symbol("↙", "Down Left Arrow"));
+        arrows.add(new Symbol("↚", "Leftwards Arrow with Stroke"));
+        arrows.add(new Symbol("↛", "Rightwards Arrow with Stroke"));
+        arrows.add(new Symbol("↜", "Leftwards Wave Arrow"));
+        arrows.add(new Symbol("↝", "Rightwards Wave Arrow"));
+        arrows.add(new Symbol("↞", "Leftwards Two Headed Arrow"));
+        arrows.add(new Symbol("↟", "Upwards Two Headed Arrow"));
+        arrows.add(new Symbol("↠", "Rightwards Two Headed Arrow"));
+        arrows.add(new Symbol("↡", "Downwards Two Headed Arrow"));
+        arrows.add(new Symbol("↢", "Leftwards Arrow with Tail"));
+        arrows.add(new Symbol("↣", "Rightwards Arrow with Tail"));
+        arrows.add(new Symbol("↤", "Leftwards Arrow from Bar"));
+        arrows.add(new Symbol("↥", "Upwards Arrow from Bar"));
+        arrows.add(new Symbol("↦", "Rightwards Arrow from Bar"));
+        arrows.add(new Symbol("↧", "Downwards Arrow from Bar"));
+        arrows.add(new Symbol("↨", "Up Down Arrow with Base"));
+        arrows.add(new Symbol("↩", "Leftwards Arrow with Hook"));
+        arrows.add(new Symbol("↪", "Rightwards Arrow with Hook"));
+        arrows.add(new Symbol("↫", "Leftwards Arrow with Loop"));
+        arrows.add(new Symbol("↬", "Rightwards Arrow with Loop"));
+        arrows.add(new Symbol("↭", "Left Right Wave Arrow"));
+        arrows.add(new Symbol("↮", "No Left Right Arrow"));
+        arrows.add(new Symbol("↯", "Down Zigzag Arrow"));
+        arrows.add(new Symbol("↰", "Upwards Arrow with Tip Leftwards"));
+        arrows.add(new Symbol("↱", "Upwards Arrow with Tip Rightwards"));
+        arrows.add(new Symbol("↲", "Downwards Arrow with Tip Leftwards"));
+        arrows.add(new Symbol("↳", "Downwards Arrow with Tip Rightwards"));
+        arrows.add(new Symbol("↴", "Downwards Arrow from Corner"));
+        arrows.add(new Symbol("↵", "Downwards Arrow with Corner Leftwards"));
+        arrows.add(new Symbol("↶", "Anticlockwise Open Circle Arrow"));
+        arrows.add(new Symbol("↷", "Clockwise Open Circle Arrow"));
+        arrows.add(new Symbol("↸", "North West Arrow to Long Bar"));
+        arrows.add(new Symbol("↹", "Leftwards Arrow to Bar Over Rightwards Arrow to Bar"));
+        arrows.add(new Symbol("↺", "Anticlockwise Circle Arrow"));
+        arrows.add(new Symbol("↻", "Clockwise Circle Arrow"));
+        arrows.add(new Symbol("⇄", "Left Right Double Arrow"));
+        arrows.add(new Symbol("⇅", "Up Down Double Arrow"));
+        arrows.add(new Symbol("⇆", "Left Right Arrow with Double Stroke"));
+        arrows.add(new Symbol("⇇", "Leftwards Double Arrow"));
+        arrows.add(new Symbol("⇈", "Upwards Double Arrow"));
+        arrows.add(new Symbol("⇉", "Rightwards Double Arrow"));
+
+        for (Symbol symbol : arrows){
+            symbol.setCategory("arrows");
+            symbolRepository.save(symbol);
+        };
+
+        // Punctuation Symbols
+        punctuation.add(new Symbol("!", "Exclamation Mark"));
+        punctuation.add(new Symbol("?", "Question Mark"));
+        punctuation.add(new Symbol("‼", "Double Exclamation Mark"));
+        punctuation.add(new Symbol("⁉", "Exclamation Question Mark"));
+        punctuation.add(new Symbol("❗", "Heavy Exclamation Mark"));
+        punctuation.add(new Symbol("❕", "White Exclamation Mark"));
+        punctuation.add(new Symbol("❓", "Black Question Mark"));
+        punctuation.add(new Symbol("❔", "White Question Mark"));
+        punctuation.add(new Symbol("·", "Middle Dot"));
+        punctuation.add(new Symbol("•", "Bullet"));
+        punctuation.add(new Symbol("‣", "Triangular Bullet"));
+        punctuation.add(new Symbol("⁃", "Hyphen Bullet"));
+        punctuation.add(new Symbol("◦", "White Bullet"));
+        punctuation.add(new Symbol("․", "One Dot Leader"));
+        punctuation.add(new Symbol("‥", "Two Dot Leader"));
+        punctuation.add(new Symbol("…", "Ellipsis"));
+        punctuation.add(new Symbol("′", "Prime"));
+        punctuation.add(new Symbol("″", "Double Prime"));
+        punctuation.add(new Symbol("‴", "Triple Prime"));
+        punctuation.add(new Symbol("‵", "Reversed Prime"));
+        punctuation.add(new Symbol("‶", "Reversed Double Prime"));
+        punctuation.add(new Symbol("‷", "Reversed Triple Prime"));
+        punctuation.add(new Symbol("‚", "Single Low-9 Quotation Mark"));
+        punctuation.add(new Symbol("„", "Double Low-9 Quotation Mark"));
+        punctuation.add(new Symbol("“", "Left Double Quotation Mark"));
+        punctuation.add(new Symbol("”", "Right Double Quotation Mark"));
+        punctuation.add(new Symbol("‘", "Left Single Quotation Mark"));
+        punctuation.add(new Symbol("’", "Right Single Quotation Mark"));
+        punctuation.add(new Symbol("‹", "Single Left-Pointing Angle Quotation Mark"));
+        punctuation.add(new Symbol("›", "Single Right-Pointing Angle Quotation Mark"));
+        punctuation.add(new Symbol("«", "Left-Pointing Double Angle Quotation Mark"));
+        punctuation.add(new Symbol("»", "Right-Pointing Double Angle Quotation Mark"));
+        punctuation.add(new Symbol("‐", "Hyphen"));
+        punctuation.add(new Symbol("‑", "Non-Breaking Hyphen"));
+        punctuation.add(new Symbol("‒", "Figure Dash"));
+        punctuation.add(new Symbol("–", "En Dash"));
+        punctuation.add(new Symbol("—", "Em Dash"));
+        punctuation.add(new Symbol("―", "Horizontal Bar"));
+        punctuation.add(new Symbol("…", "Ellipsis 2"));
+        punctuation.add(new Symbol("‼", "Double Exclamation"));
+        punctuation.add(new Symbol("⁇", "Double Question"));
+        punctuation.add(new Symbol("⁈", "Question Exclamation"));
+        punctuation.add(new Symbol("⁉", "Exclamation Question"));
+        punctuation.add(new Symbol("⌐", "Not Sign"));
+        punctuation.add(new Symbol("¬", "Logical Not"));
+        punctuation.add(new Symbol("¿", "Inverted Question Mark"));
+        punctuation.add(new Symbol("¡", "Inverted Exclamation Mark"));
+        punctuation.add(new Symbol("¸", "Cedilla"));
+        punctuation.add(new Symbol("°", "Degree Symbol"));
+
+        for (Symbol symbol : punctuation){
+            symbol.setCategory("punctuation");
+            symbolRepository.save(symbol);
+        };
+
+        // Maths Symbols
+        math.add(new Symbol("+", "Plus"));
+        math.add(new Symbol("-", "Minus"));
+        math.add(new Symbol("×", "Multiplication"));
+        math.add(new Symbol("÷", "Division"));
+        math.add(new Symbol("=", "Equals"));
+        math.add(new Symbol("≠", "Not Equals"));
+        math.add(new Symbol("<", "Less Than"));
+        math.add(new Symbol(">", "Greater Than"));
+        math.add(new Symbol("≤", "Less Than or Equal"));
+        math.add(new Symbol("≥", "Greater Than or Equal"));
+        math.add(new Symbol("±", "Plus Minus"));
+        math.add(new Symbol("∓", "Minus Plus"));
+        math.add(new Symbol("∞", "Infinity"));
+        math.add(new Symbol("∑", "Summation"));
+        math.add(new Symbol("∏", "Product"));
+        math.add(new Symbol("∫", "Integral"));
+        math.add(new Symbol("∮", "Contour Integral"));
+        math.add(new Symbol("√", "Square Root"));
+        math.add(new Symbol("∛", "Cube Root"));
+        math.add(new Symbol("∜", "Fourth Root"));
+        math.add(new Symbol("∝", "Proportional To"));
+        math.add(new Symbol("∂", "Partial Differential"));
+        math.add(new Symbol("∇", "Nabla"));
+        math.add(new Symbol("≈", "Approximately Equal"));
+        math.add(new Symbol("≡", "Identical To"));
+        math.add(new Symbol("≅", "Congruent To"));
+        math.add(new Symbol("⊂", "Subset Of"));
+        math.add(new Symbol("⊃", "Superset Of"));
+        math.add(new Symbol("⊆", "Subset or Equal"));
+        math.add(new Symbol("⊇", "Superset or Equal"));
+        math.add(new Symbol("⊕", "Circled Plus"));
+        math.add(new Symbol("⊗", "Circled Times"));
+        math.add(new Symbol("⊥", "Perpendicular"));
+        math.add(new Symbol("∠", "Angle"));
+        math.add(new Symbol("∟", "Right Angle"));
+        math.add(new Symbol("∴", "Therefore"));
+        math.add(new Symbol("∵", "Because"));
+        math.add(new Symbol("∶", "Ratio"));
+        math.add(new Symbol("∷", "Proportion"));
+        math.add(new Symbol("∝", "Proportional"));
+        math.add(new Symbol("√", "Root"));
+        math.add(new Symbol("∛", "Cube Root 2"));
+        math.add(new Symbol("∜", "Fourth Root 2"));
+        math.add(new Symbol("∑", "Summation 2"));
+        math.add(new Symbol("∏", "Product 2"));
+        math.add(new Symbol("∫", "Integral 2"));
+
+        for (Symbol symbol : math){
+            symbol.setCategory("math");
+            symbolRepository.save(symbol);
+        };
+
+        // Number Symbols
+        numbers.add(new Symbol("0", "Zero"));
+        numbers.add(new Symbol("1", "One"));
+        numbers.add(new Symbol("2", "Two"));
+        numbers.add(new Symbol("3", "Three"));
+        numbers.add(new Symbol("4", "Four"));
+        numbers.add(new Symbol("5", "Five"));
+        numbers.add(new Symbol("6", "Six"));
+        numbers.add(new Symbol("7", "Seven"));
+        numbers.add(new Symbol("8", "Eight"));
+        numbers.add(new Symbol("9", "Nine"));
+        numbers.add(new Symbol("¹", "Superscript One"));
+        numbers.add(new Symbol("²", "Superscript Two"));
+        numbers.add(new Symbol("³", "Superscript Three"));
+        numbers.add(new Symbol("⁴", "Superscript Four"));
+        numbers.add(new Symbol("⁵", "Superscript Five"));
+        numbers.add(new Symbol("⁶", "Superscript Six"));
+        numbers.add(new Symbol("⁷", "Superscript Seven"));
+        numbers.add(new Symbol("⁸", "Superscript Eight"));
+        numbers.add(new Symbol("⁹", "Superscript Nine"));
+        numbers.add(new Symbol("⁰", "Superscript Zero"));
+        numbers.add(new Symbol("₀", "Subscript Zero"));
+        numbers.add(new Symbol("₁", "Subscript One"));
+        numbers.add(new Symbol("₂", "Subscript Two"));
+        numbers.add(new Symbol("₃", "Subscript Three"));
+        numbers.add(new Symbol("₄", "Subscript Four"));
+        numbers.add(new Symbol("₅", "Subscript Five"));
+        numbers.add(new Symbol("₆", "Subscript Six"));
+        numbers.add(new Symbol("₇", "Subscript Seven"));
+        numbers.add(new Symbol("₈", "Subscript Eight"));
+        numbers.add(new Symbol("₉", "Subscript Nine"));
+        numbers.add(new Symbol("½", "One Half"));
+        numbers.add(new Symbol("⅓", "One Third"));
+        numbers.add(new Symbol("⅔", "Two Thirds"));
+        numbers.add(new Symbol("¼", "One Quarter"));
+        numbers.add(new Symbol("¾", "Three Quarters"));
+        numbers.add(new Symbol("⅛", "One Eighth"));
+        numbers.add(new Symbol("⅜", "Three Eighths"));
+        numbers.add(new Symbol("⅝", "Five Eighths"));
+        numbers.add(new Symbol("⅞", "Seven Eighths"));
+        numbers.add(new Symbol("⅕", "One Fifth"));
+        numbers.add(new Symbol("⅖", "Two Fifths"));
+        numbers.add(new Symbol("⅗", "Three Fifths"));
+        numbers.add(new Symbol("⅘", "Four Fifths"));
+        numbers.add(new Symbol("⅙", "One Sixth"));
+        numbers.add(new Symbol("⅚", "Five Sixth"));
+        numbers.add(new Symbol("⅐", "One Seventh"));
+        numbers.add(new Symbol("⅑", "One Ninth"));
+        numbers.add(new Symbol("⅒", "One Tenth"));
+
+        for (Symbol symbol : numbers){
+            symbol.setCategory("numbers");
+            symbolRepository.save(symbol);
+        };
     }
+*/
 
     @PostConstruct
     public List<Emoji> getAllEmojies(){
@@ -1197,4 +1806,21 @@ public class DataHolder {
         allEmojis.addAll(flags);
         return allEmojis;
     }
+
+    @PostConstruct
+    public List<Symbol> getAllSymbols(){
+        allSymbols.addAll(starsDecorative);
+        allSymbols.addAll(copyrightTrademark);
+        allSymbols.addAll(currency);
+        allSymbols.addAll(game);
+        allSymbols.addAll(musical);
+        allSymbols.addAll(arrows);
+        allSymbols.addAll(punctuation);
+        allSymbols.addAll(math);
+        allSymbols.addAll(numbers);
+        allSymbols.addAll(weather);
+        return allSymbols;
+    }
+
+
 }

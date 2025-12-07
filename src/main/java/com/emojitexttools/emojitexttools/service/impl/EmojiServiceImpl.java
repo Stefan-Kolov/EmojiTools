@@ -23,7 +23,12 @@ public class EmojiServiceImpl implements EmojiService {
 
     @Override
     public List<Emoji> findByName(String name) {
-        return emojiRepository.findByName(name);
+        return emojiRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    @Override
+    public List<Emoji> findAll() {
+        return emojiRepository.findAll();
     }
 
 }
