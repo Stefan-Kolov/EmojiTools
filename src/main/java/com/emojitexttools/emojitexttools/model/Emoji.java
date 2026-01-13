@@ -12,8 +12,11 @@ public class Emoji {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String emoji;
+
     private String name;
+
     private String category;
 
     public Emoji(String emoji, String name) {
@@ -23,21 +26,5 @@ public class Emoji {
 
     public Emoji() {
 
-    }
-
-    public String getEmoji() {
-        return emoji;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 }

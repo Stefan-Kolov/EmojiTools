@@ -24,18 +24,4 @@ public class Symbol {
     public Symbol() {
 
     }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCategory() {return category;}
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 }

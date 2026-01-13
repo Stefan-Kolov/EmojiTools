@@ -39,6 +39,7 @@ public class EmojiesController {
             partitionedEmojis.add(selectedEmojies.subList(i, Math.min(i + 10, selectedEmojies.size())));
         }
 
+
         model.addAttribute("emojies", partitionedEmojis);
         model.addAttribute("selectedCategory", category);
         model.addAttribute("query", query);
