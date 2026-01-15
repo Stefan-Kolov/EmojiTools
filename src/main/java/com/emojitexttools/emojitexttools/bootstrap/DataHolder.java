@@ -43,7 +43,7 @@ public class DataHolder {
     }
 
 
-    /*
+
     @PostConstruct
     public void init(){
         smilesAndPeople.add(new Emoji("😀", "Grinning Face"));
@@ -288,7 +288,7 @@ public class DataHolder {
         for (Emoji emoji : smilesAndPeople){
             emoji.setCategory("smilesAndPeople");
             emojiRepository.save(emoji);
-        };
+        }
 
         // Animals
         animalsAndNature.add(new Emoji("🐶", "Dog Face"));
@@ -451,7 +451,7 @@ public class DataHolder {
         for (Emoji emoji : animalsAndNature){
             emoji.setCategory("animalsAndNature");
             emojiRepository.save(emoji);
-        };
+        }
 
         // Food & Drink
         foodAndDrink.add(new Emoji("🍏", "Green Apple"));
@@ -556,7 +556,7 @@ public class DataHolder {
         for (Emoji emoji : foodAndDrink){
             emoji.setCategory("foodAndDrink");
             emojiRepository.save(emoji);
-        };
+        }
 
         // Travel & Places
         travelAndPlaces.add(new Emoji("🚗", "Car"));
@@ -653,7 +653,7 @@ public class DataHolder {
         for (Emoji emoji : travelAndPlaces){
             emoji.setCategory("travelAndPlaces");
             emojiRepository.save(emoji);
-        };
+        }
 
         // Activities
         activities.add(new Emoji("⚽", "Soccer Ball"));
@@ -742,7 +742,7 @@ public class DataHolder {
         for (Emoji emoji : activities){
             emoji.setCategory("activities");
             emojiRepository.save(emoji);
-        };
+        }
 
         // Objects
         objects.add(new Emoji("⌚", "Watch"));
@@ -850,7 +850,7 @@ public class DataHolder {
         for (Emoji emoji : objects){
             emoji.setCategory("objects");
             emojiRepository.save(emoji);
-        };
+        }
 
         // Symbols
         symbols.add(new Emoji("💓", "Beating Heart"));
@@ -1000,7 +1000,7 @@ public class DataHolder {
         for (Emoji emoji : symbols){
             emoji.setCategory("symbols");
             emojiRepository.save(emoji);
-        };
+        }
 
         // Flags
         flags.add(new Emoji("🇦🇮", "Anguilla Flag"));
@@ -1238,7 +1238,7 @@ public class DataHolder {
         for (Emoji emoji : flags){
             emoji.setCategory("flags");
             emojiRepository.save(emoji);
-        };
+        }
 
         // Stars & Decorative Symbols
         starsDecorative.add(new Symbol("★", "Black Star"));
@@ -1294,7 +1294,7 @@ public class DataHolder {
         for (Symbol symbol : starsDecorative){
             symbol.setCategory("starsDecorative");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Copyright / Trademark & Office / Law Symbols
         copyrightTrademark.add(new Symbol("©", "Copyright"));
@@ -1348,7 +1348,7 @@ public class DataHolder {
         for (Symbol symbol : copyrightTrademark){
             symbol.setCategory("copyrightTrademark");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Currency Symbols
         currency.add(new Symbol("$", "Dollar Sign"));
@@ -1401,7 +1401,7 @@ public class DataHolder {
         for (Symbol symbol : currency){
             symbol.setCategory("currency");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Game / Chess / Card Symbols
         game.add(new Symbol("♔", "White King"));
@@ -1459,7 +1459,7 @@ public class DataHolder {
         for (Symbol symbol : game){
             symbol.setCategory("game");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Musical Symbols
         musical.add(new Symbol("♪", "Eighth Note"));
@@ -1514,7 +1514,7 @@ public class DataHolder {
         for (Symbol symbol : musical){
             symbol.setCategory("musical");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Weather / Degree / Unit Symbols
         weather.add(new Symbol("°", "Degree"));
@@ -1569,7 +1569,7 @@ public class DataHolder {
         for (Symbol symbol : weather){
             symbol.setCategory("weather");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Arrows & Directions
         arrows.add(new Symbol("↑", "Up Arrow"));
@@ -1626,7 +1626,7 @@ public class DataHolder {
         for (Symbol symbol : arrows){
             symbol.setCategory("arrows");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Punctuation Symbols
         punctuation.add(new Symbol("!", "Exclamation Mark"));
@@ -1682,7 +1682,7 @@ public class DataHolder {
         for (Symbol symbol : punctuation){
             symbol.setCategory("punctuation");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Maths Symbols
         math.add(new Symbol("+", "Plus"));
@@ -1735,7 +1735,7 @@ public class DataHolder {
         for (Symbol symbol : math){
             symbol.setCategory("math");
             symbolRepository.save(symbol);
-        };
+        }
 
         // Number Symbols
         numbers.add(new Symbol("0", "Zero"));
@@ -1790,9 +1790,8 @@ public class DataHolder {
         for (Symbol symbol : numbers){
             symbol.setCategory("numbers");
             symbolRepository.save(symbol);
-        };
+        }
     }
-*/
 
     @PostConstruct
     public List<Emoji> getAllEmojies(){
