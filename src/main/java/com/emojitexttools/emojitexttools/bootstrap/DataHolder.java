@@ -43,7 +43,7 @@ public class DataHolder {
     }
 
 
-
+    /*
     @PostConstruct
     public void init(){
         smilesAndPeople.add(new Emoji("😀", "Grinning Face"));
@@ -1793,6 +1793,7 @@ public class DataHolder {
         }
     }
 
+     */
     @PostConstruct
     public List<Emoji> getAllEmojies(){
         allEmojis.addAll(smilesAndPeople);
