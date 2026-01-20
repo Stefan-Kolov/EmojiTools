@@ -24,18 +24,4 @@ public class Symbol {
     public Symbol() {
 
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Emoji)) return false;
-        Emoji other = (Emoji) o;
-        return id != null && id.equals(other.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
-
 }
