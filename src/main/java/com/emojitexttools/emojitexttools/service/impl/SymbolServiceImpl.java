@@ -22,7 +22,11 @@ public class SymbolServiceImpl implements SymbolService {
 
     @Override
     public List<Symbol> findByName(String name) {
-        return symbolRepository.findByNameContainingIgnoreCase(name);
+        return symbolRepository
+                .findByNameContainingIgnoreCase(name)
+                .stream()
+                .distinct()
+                .toList();
     }
 
     @Override
